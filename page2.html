@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px auto;
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .doctor-list {
+            max-width: 500px;
+            margin: 20px auto;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .doctor-button {
+            display: block;
+            width: 90%;
+            padding: 10px;
+            margin: 10px auto;
+            border: none;
+            border-radius: 5px;
+            background-color: #0073e6;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .doctor-button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Search for a Doctor</h2>
+    <input type="text" id="searchBox" placeholder="Search by name or specialization..." onkeyup="searchDoctor()">
+
+    <div class="doctor-list" id="doctorList">
+        <a href="page3.html">
+        <button class="doctor-button" onclick="selectDoctor('Dr. John Smith - Cardiologist')">Dr. John Smith - Cardiologist</button>
+        <button class="doctor-button" onclick="selectDoctor('Dr. Emily Brown - Dermatologist')">Dr. Emily Brown - Dermatologist</button>
+        <button class="doctor-button" onclick="selectDoctor('Dr. Michael Johnson - Neurologist')">Dr. Michael Johnson - Neurologist</button>
+        <button class="doctor-button" onclick="selectDoctor('Dr. Sarah Wilson - Pediatrician')">Dr. Sarah Wilson - Pediatrician</button>
+        <button class="doctor-button" onclick="selectDoctor('Dr. David Lee - Orthopedic')">Dr. David Lee - Orthopedic</button>
+        <button class="doctor-button" onclick="selectDoctor('Dr. Robert Clark - Oncologist')">Dr. Robert Clark - Oncologist</button>
+        <button class="doctor-button" onclick="selectDoctor('Dr. Jessica Martinez - Endocrinologist')">Dr. Jessica Martinez - Endocrinologist</button>
+        <button class="doctor-button" onclick="selectDoctor('Dr. William Anderson - ENT Specialist')">Dr. William Anderson - ENT Specialist</button>
+        <button class="doctor-button" onclick="selectDoctor('Dr. Olivia Harris - Gynecologist')">Dr. Olivia Harris - Gynecologist</button>
+        <button class="doctor-button" onclick="selectDoctor('Dr. Daniel Thompson - Psychiatrist')">Dr. Daniel Thompson - Psychiatrist</button>
+        </a>
+    </div>
+
+    <script>
+        function searchDoctor() {
+            let input = document.getElementById("searchBox").value.toLowerCase();
+            let buttons = document.querySelectorAll(".doctor-button");
+
+            buttons.forEach(button => {
+                if (button.textContent.toLowerCase().includes(input)) {
+                    button.style.display = "block";
+                } else {
+                    button.style.display = "none";
+                }
+            });
+        }
+
+        function selectDoctor(doctorName) {
+            alert(`You selected: ${doctorName}`);
+        }
+    </script>
+
+</body>
+</html>

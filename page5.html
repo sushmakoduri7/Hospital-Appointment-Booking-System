@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device initial-scale=1.0">
+    <title>Appointment Confirmed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: green;
+        }
+        .details {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            background-color: #0073e6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        a:hover {
+            background-color: #005bb5;
+        }
+    </style>
+    <script>
+        function generateRandomID() {
+            return Math.floor(100000 + Math.random() * 900000); // 6-digit random ID
+        }
+
+        function generateRandomDate() {
+            let today = new Date();
+            let randomDays = Math.floor(Math.random() * 7) + 1; // Between 1 and 7 days ahead
+            let appointmentDate = new Date();
+            appointmentDate.setDate(today.getDate() + randomDays);
+            return appointmentDate.toDateString(); // Format: "Mon Mar 25 2024"
+        }
+
+        function generateRandomTime() {
+            let hours = Math.floor(Math.random() * 9) + 9; // Between 9 AM and 5 PM
+            let minutes = Math.random() < 0.5 ? "00" : "30"; // Either 00 or 30 minutes
+            let period = hours >= 12 ? "PM" : "AM";
+            let formattedHours = hours > 12 ? hours - 12 : hours;
+            return `${formattedHours}:${minutes} ${period}`; // Format: "10:30 AM"
+        }
+
+        window.onload = function() {
+            let appointmentID = localStorage.getItem("appointmentID") || generateRandomID();
+            let patientName = localStorage.getItem("patientName") || "John Doe"; // Default name if not provided
+            let appointmentDate = localStorage.getItem("appointmentDate") || generateRandomDate();
+            let appointmentTime = localStorage.getItem("appointmentTime") || generateRandomTime();
+
+            // Store generated values in localStorage
+            localStorage.setItem("appointmentID", appointmentID);
+            localStorage.setItem("appointmentDate", appointmentDate);
+            localStorage.setItem("appointmentTime", appointmentTime);
+
+            document.getElementById("patientName").innerText = patientName;
+            document.getElementById("appointmentID").innerText = appointmentID;
+            document.getElementById("appointmentDate").innerText = appointmentDate;
+            document.getElementById("appointmentTime").innerText = appointmentTime;
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>✅ Appointment Confirmed!</h1>
+        <div id="confirmation">
+            <p class="details">Thank you, <strong id="patientName"></strong>. Your appointment has been booked.</p>
+            <p class="details"><strong>Appointment ID:</strong> <span id="appointmentID"></span></p>
+            <p class="details"><strong>Date:</strong> <span id="appointmentDate"></span></p>
+            <p class="details"><strong>Time:</strong> <span id="appointmentTime"></span></p>
+        </div>
+        <a href="index.html">Go Back to Home</a>
+    </div>
+
+</body>
+</html>

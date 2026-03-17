@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Booking</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header, footer {
+            background-color: #0073e6;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        section {
+            padding: 30px;
+            background-color: white;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            text-align: center;
+        }
+        input, select, button {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+        button {
+            background-color: #0073e6;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+
+    <script>
+        function validateBooking() {
+            const date = document.getElementById("appointment-date").value;
+            const time = document.getElementById("appointment-time").value;
+
+            if (!date || !time) {
+                alert("Please select a date and time.");
+                return;
+            }
+
+            alert(Appointment booked for ${date} at ${time});
+            window.location.href = "confirmation.html"; // Redirect to a confirmation page
+        }
+
+        function setMinDate() {
+            let today = new Date().toISOString().split("T")[0];
+            document.getElementById("appointment-date").setAttribute("min", today);
+        }
+    </script>
+</head>
+<body onload="setMinDate()">
+    <header>
+        <h1>Book an Appointment</h1>
+    </header>
+
+    <section>
+        <h2>Select Date & Time</h2>
+        
+        <label for="appointment-date">Choose a Date:</label>
+        <input type="date" id="appointment-date" required>
+
+        <label for="appointment-time">Choose a Time Slot:</label>
+        <select id="appointment-time" required>
+            <option value="">--Select Time Slot--</option>
+            <option value="09:00 AM">09:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="02:00 PM">02:00 PM</option>
+            <option value="03:00 PM">03:00 PM</option>
+            <option value="04:00 PM">04:00 PM</option>
+        </select>
+        <a href="page4.html">
+            <button onclick="validateBooking()">Check Availability</button>
+        </a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 City Hospital. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
